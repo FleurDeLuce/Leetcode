@@ -1,0 +1,36 @@
+/*
+Given an input string, reverse the string word by word.
+
+For example,
+Given s = "the sky is blue",
+return "blue is sky the".
+
+click to show clarification.
+
+Clarification:
+What constitutes a word?
+A sequence of non-space characters constitutes a word.
+Could the input string contain leading or trailing spaces?
+Yes. However, your reversed string should not contain leading or trailing spaces.
+How about multiple spaces between two words?
+Reduce them to a single space in the reversed string.
+*/
+
+public class Solution {
+    public String reverseWords(String s) {
+        if (s == null || s.length() < 1) return s;
+        int start = 0, end = 0, len = s.length();
+        StringBuffer sb = new StringBuffer();        
+        while (start < len && end < len) {
+            while (start < len && s.charAt(start) == ' ') start++;
+            end = start + 1;
+            while (end < len && s.charAt(end) != ' ') end++;
+            if (end <= len) {
+                if (sb.length() > 0) sb = sb.insert(0, " "); 
+                sb = sb.insert(0, s.substring(start, end));
+                start = end;
+            }
+        }
+        return sb.toString();
+    }
+}
