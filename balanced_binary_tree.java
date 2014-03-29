@@ -12,6 +12,8 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
  *     TreeNode(int x) { val = x; }
  * }
  */
+// Time Complexity: O(n)
+// Space Complexity: O(logn)
 public class Solution {
     public int balancedHeight(TreeNode root) {
         if (root == null) return 0;
