@@ -25,6 +25,7 @@ public class Solution {
     // find lower bound
     private int findLeft(int[] A, int target) {
         int left = 0, right = A.length - 1;
+        // not left <= right, since when left == right, the index may be out of range
         while (left < right) {
             int mid = (left + right) / 2;
             if (A[mid] < target) left = mid + 1;
