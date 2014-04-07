@@ -23,30 +23,29 @@ public class Solution {
     }
     
     private int findLeft(int[] A, int target) {
-        int i = 0, j = A.length - 1;
-        while (i < j) {
-            int mid = (i + j) / 2;
-            if (A[mid] < target) i = mid + 1;
-            else j = mid - 1;
+        int left = 0, right = A.length - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (A[mid] < target) left = mid + 1;
+            else right = mid - 1;
         }
-        if (A[i] == target) return i;
-        if (i < A.length - 1 && A[i + 1] == target) return i + 1;
+        if (A[left] == target) return left;
+        if (left < A.length - 1 && A[left + 1] == target) return left + 1;
         return -1;
     }
     
     private int findRight(int[] A, int target) {
-        int i = 0, j = A.length - 1;
-        while (i < j) {
-            int mid = (i + j) / 2;
-            if (A[mid] > target) j = mid - 1;
-            else i = mid + 1;
+        int left = 0, right = A.length - 1;
+        while (left < right) {
+            int mid = (left + right) / 2;
+            if (A[mid] > target) right = mid - 1;
+            else left = mid + 1;
         }
-        if (j >= 0 && A[j] == target) return j;
-        if (j > 0 && A[j - 1] == target) return j - 1;
+        if (right >= 0 && A[right] == target) return right;
+        if (right > 0 && A[right - 1] == target) return right - 1;
         return -1;
     }
 }
-
 
 // O(n) solution
 public class Solution {
