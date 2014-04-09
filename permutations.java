@@ -6,61 +6,78 @@ For example,
 [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
 */
 
-// recursive solution: insert in all positions of (n - 1)
-// recursive solution
+// recursive solution 1: backward
+// the max subproblem is n - 1, by inserting the 1st element to following n - 1 
+/* 
+   recursion notes:
+   1. in main function, call recursive function from the topmost subproblem, 
+      which is called first but handled last in the function call stack
+   2. in recursive function:
+      1> the base case is the subproblem called last but handled first 
+      2> in other cases, the parameter changes in the way of reducing subproblem
+*/
 public class Solution {
     public ArrayList<ArrayList<Integer>> permute(int[] num) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         if (num == null || num.length == 0) return res;
-        ArrayList<Integer> permutation = new ArrayList<Integer>();
-        getPermutation(num, permutation, res);
+        return getPerm(num, 0);
     }
-    
-    public void getPermutation(int[] num, ArrayList<Integer> permutation, ArrayList<ArrayList<Integer>> res) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+
+    public ArrayList<ArrayList<Integer>> getPerm(int[] num, int start) {
         int size = num.length;
-        if (permutation.size() == len) {
-            res.add(permutation);
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();    
+        if (start == size - 1) {
+            ArrayList<Integer> temp = new ArrayList<Integer>();
+            temp.add(num[size - 1]);
+            res.add(temp);
+            return res;
         }
-        if (permutation.size() == 0) {
-            ArrayList<Integer> permutation = new ArrayList<Integer>();
-            
-        }
-    }   
-    public ArrayList<Integer> insertAllPositions() {
-        
-    }
-}
 
-
-// recursive solution: swap
-public class Solution {
-    public ArrayList<ArrayList<Integer>> permute(int[] num) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
-        if (num == null || num.length == 0) return res;
-        return getNextPerm(num, 0);
-    }
-
-    public void getNextPerm(int[] num, int start) {
-        int size = num.length;
         ArrayList<ArrayList<Integer>> cur = new ArrayList<ArrayList<Integer>>();
-        if (start == size) {
-            cur.add(permutations);
-            return cur;
-        }
-
-        cur = getNextPerm(num, start + 1)
+        cur = getPerm(num, start + 1);
         for (ArrayList<Integer> p : cur) {
-            for (int i = 0; i < cur.size() + 1; i++) {
+            for (int i = 0; i < p.size() + 1; i++) {
                 ArrayList<Integer> temp = new ArrayList<Integer>(p);
                 temp.add(i, num[start]);
-                cur.add(temp);
+                res.add(temp);
             }
         }
+        return res;
     }
 }
 
+// recursive solution 2: forward
+// the max subproblem is n - 1, by inserting nth element to first n - 1
 
+public class Solution {
+    public ArrayList<ArrayList<Integer>> permute(int[] num) {
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+        if (num == null || num.length == 0) return res;
+        return getPerm(num, num.length - 1);
+    }
+
+    public ArrayList<ArrayList<Integer>> getPerm(int[] num, int start) {
+        int size = num.length;
+        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();    
+        if (start == 0) {
+            ArrayList<Integer> temp = new ArrayList<Integer>();
+            temp.add(num[0]);
+            res.add(temp);
+            return res;
+        }
+
+        ArrayList<ArrayList<Integer>> cur = new ArrayList<ArrayList<Integer>>();
+        cur = getPerm(num, start - 1);
+        for (ArrayList<Integer> p : cur) {
+            for (int i = 0; i < p.size() + 1; i++) {
+                ArrayList<Integer> temp = new ArrayList<Integer>(p);
+                temp.add(i, num[start]);
+                res.add(temp);
+            }
+        }
+        return res;
+    }
+}
 
 // iterative solution 1
 public class Solution {
@@ -94,7 +111,6 @@ public class Solution {
 }
 
 
-
 // iterative solution 2
 public class Solution {
     public ArrayList<ArrayList<Integer>> permute(int[] num) {
@@ -120,3 +136,6 @@ public class Solution {
         return res;
     }
 }
+
+
+
