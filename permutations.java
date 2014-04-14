@@ -80,6 +80,8 @@ public class Solution {
 }
 
 // iterative solution 1
+// time complexity: O(n*n*(n-1)!) = O(n*n!)
+// space complexity: O(n!)
 public class Solution {
     public ArrayList<ArrayList<Integer>> permute(int[] num) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
