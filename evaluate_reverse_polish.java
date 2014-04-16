@@ -8,13 +8,8 @@ and [3,4,-1,1] return 2.
 Your algorithm should run in O(n) time and uses constant space.
 */
 
-// Solution 1
-// The first missing positive numbers must be within 1~n. Since there're at most n numbers in the array, 
-// if ordered strictly ascending by 1, which is 1, 2, 3, ..., n - 1, n, then the first missing positive is n + 1
-// otherwise there must be one number within [1, n] that is missing and replaced by something else
-// We can use the original array as hashtable, to put element A[i] in position (value of A[i]), 
-// but in this case, there's no number to fit in A[0] spot if no 0 in the array
-// thus we would swap A[0] to position value of A[0] - 1, which means spot 0 is 1, A[0] = 1.
+// Solution1: Swap and rearrange until A[i] = i+1
+import java.util.HashSet;
 public class Solution {
     public int firstMissingPositive(int[] A) {
         for(int i = 0; i < A.length; ++i) {
@@ -35,7 +30,7 @@ public class Solution {
 }
 
 
-// Solution 2: Create a new array for hash
+// Solution2: Create a new array for hash
 public class Solution {
     public int firstMissingPositive(int[] A) {
         // Start typing your Java solution below
@@ -65,7 +60,7 @@ public class Solution {
     }
 }
 
-// Solution 3: Use original array with overwritten
+// Solution3: Use original array with overwritten
 public class Solution {
     public int firstMissingPositive(int[] A) {
         // Start typing your Java solution below
