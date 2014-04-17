@@ -9,6 +9,8 @@ Some examples:
 */
 // Solution 1: iterative with stack
 // time: O(n), space: O(logn)
+// all operators and numbers of the array, n in total, end with a binary tree
+// thus the stack to hold numbers has depth of tree height
 public class Solution {
     public int evalRPN(String[] tokens) {
         if (tokens == null || tokens.length == 0) return 0;
