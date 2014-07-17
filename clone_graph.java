@@ -42,6 +42,7 @@ public class Solution {
         // store the frontier of nodes in the same depth
         LinkedList<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
         // store the old graph node and their accordingly copied node pair to prevent redundant copies of nodes
+        // keep tracking of visited nodes
         HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
         queue.add(node);
 
@@ -53,15 +54,16 @@ public class Solution {
         	UndirectedGraphNode copyCur = map.get(curNode);
 
         	for (UndirectedGraphNode neighbor : curNode.neighbors) {
-
         		// the neighbor node has not been copied before
         		if (!map.containsKey(neighbor)) {
+        		    // create copied node
         			UndirectedGraphNode copyNeighbor = new UndirectedGraphNode(neighbor.label);
         			map.put(neighbor, copyNeighbor);
         			copyCur.neighbors.add(copyNeighbor);
         			queue.add(neighbor);
         		}
-        		// the neighbor node has been copied 
+        		// the neighbor node has been copied
+        		// then get the copied neighbor node and add to the copy node's neighbor
         		else {
         			UndirectedGraphNode copyNeighbor = map.get(neighbor);
         			copyCur.neighbors.add(copyNeighbor);
