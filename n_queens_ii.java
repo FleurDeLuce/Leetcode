@@ -16,13 +16,8 @@ public class Solution {
 
     public int totalNQueensRecur(int n, int curRow, int[] queenColAtRow) {
         int sum = 0;
-        if (curRow == n) {
-            return 1;
-        }
-        // for each row, check if column satisfied one by one
-        // in time complexity calculation, in each for loop, as previously added one more queen, thus
-        // one fewer column to be checked in confliction avoidance
-        // n * (1 + (n - 1) * (2 + (n - 2) * 3 + ... + n * 1 ))...) = O(n!)
+        if (curRow == n) return 1;
+
         for (int col = 0; col < n; col++) {
             queenColAtRow[curRow] = col;
             if (ifNotConflict(curRow, queenColAtRow)) sum += totalNQueensRecur(n, curRow + 1, queenColAtRow);
