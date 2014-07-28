@@ -5,7 +5,7 @@ Input is guaranteed to be within the range from 1 to 3999.
  */
 
 // Solution
-// Time complexity: O(num), Space complexity: O(1)
+// Time complexity: O(n), Space complexity: O(1)
 public class Solution {
     public String intToRoman(int num) {
     	String str = new String();
