@@ -4,6 +4,7 @@ There are two sorted arrays A and B of size m and n respectively. Find the media
 
 // Solution
 // Time complexity: O(log(m + n)), Space complexity: O(n)
+// @see: http://www.cnblogs.com/RazerLu/p/3533425.html
 public class Solution {
     public double findMedianSortedArrays(int A[], int B[]) {
         // IMPORTANT: Please reset any member data you declared, as
