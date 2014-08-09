@@ -16,7 +16,7 @@ A solution set is:
 */
 
 // Solution: 
-// Time complexity: O(), Space complexity: O()
+// Time complexity: O(n!), Space complexity: O(n)
 public class Solution {
     public ArrayList<ArrayList<Integer>> combinationSum2(int[] num, int target) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
