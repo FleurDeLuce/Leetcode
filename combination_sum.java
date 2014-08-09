@@ -14,30 +14,34 @@ A solution set is:
  */
 
 // Solution: 
-// Time complexity: O(), Space complexity: O()
+// Time complexity: O(n!), Space complexity: O(n)
 public class Solution {
     public ArrayList<ArrayList<Integer>> combinationSum(int[] candidates, int target) {
         ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
         if (candidates == null || candidates.length == 0 || target < 1) 
             return res;
-        // sort the candidate array
+        // sort the candidate array to prevent duplicate solutions
         Arrays.sort(candidates);
-         ArrayList<Integer> index = new ArrayList<Integer>(); 
-        getCombinationSum(target, 0, 0, candidates, index, res);
+         ArrayList<Integer> curList = new ArrayList<Integer>(); 
+        getCombinationSum(target, 0, 0, candidates, curList, res);
         return res;
     }
     
-    public void getCombinationSum(int target, int curSum, int curIndex, int[] candidates, 
-                                ArrayList<Integer> index, ArrayList<ArrayList<Integer>> res) {
+    public void getCombinationSum(int target, int curSum, int start, int[] candidates, 
+    							ArrayList<Integer> curList, ArrayList<ArrayList<Integer>> res) {
         if (curSum > target) return;
         if (curSum == target) {
-        	res.add(index);
+        	res.add(new ArrayList<Integer>(curList));
         	return;
         }
-        int num = curSum.length();
-        for (int i = curIndex; i < n; i++) {
-        	index.add(i);
-        	getCombinationSum(target, curSum + candidates[i], curIndex + 1, candidates, index, res);
+        int num = candidates.length;
+        // prevent duplicate solutions
+        for (int i = start; i < num; i++) {
+        	if (candidates[i] > target) break;
+        	curList.add(candidates[i]);
+        	// each time, add all candidates from certain start index to current list for new current sum
+        	getCombinationSum(target, curSum + candidates[i], i, candidates, curList, res);
+        	curList.remove(curList.size() - 1);
         }
     }
 }
