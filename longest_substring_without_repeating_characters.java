@@ -7,29 +7,34 @@ which the length is 3. For "bbbbb" the longest substring is "b", with the length
 
 // Solution: 
 // Time complexity: O(n), Space complexity: O(n)
-/*
 public class Solution {
-	public int lengthOfLongestSubstring(String s) {
-		if (s == null || s.length() == 0) 
+    public int lengthOfLongestSubstring(String s) {
+		int length = s.length();
+		if (length == 0) {
 			return 0;
-		int len = s.length();
-		int curLen = 1;
-		int maxLen = 1;
-		int prevIndex = 0;
-		int[] exist = new int[256];
-		Arrays.fill(exist, -1);
-
-		exist[s.charAt(0)] = 0;
-		int i = 0;
-		for (i = 1; i < len; i++) {
-			prevIndex = exist[s.charAt(i)];
-			if(prevIndex == -1 || i - curLen > prevIndex)
-				curLen++;
 		}
+		int [] countTable = new int[256];
+		Arrays.fill(countTable, -1);
+		int max = 1;
+		int start = 0;
+		int end = 1;
+		
+		countTable[s.charAt(0)] = 0;
+		while (end < length) {
+		    // countTable records the position of occurred char
+			// found a duplicate char
+			if (countTable[s.charAt(end)] >= start) {
+				start = countTable[s.charAt(end)] + 1;				
+			}
+			max = Math.max(max, end - start + 1);
+			countTable[s.charAt(end)] = end;
+			end++;
+		}
+		return max;
 	}
 }
-*/
 
+// Solution 2
 public class Solution {
 	public int lengthOfLongestSubstring(String s) {
 		if (s == null || s.length() == 0) 
