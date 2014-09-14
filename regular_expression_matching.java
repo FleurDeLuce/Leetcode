@@ -39,8 +39,10 @@ public class Solution {
         }
 
         // second char is '*'
+        // s contains 1+ same char, and the first char in s and p are the same or '.' is the first in p
         while (s.length() > 0 
         	&&(p.charAt(0) == s.charAt(0) || p.charAt(0) == '.')) {
+        	// 
         	if (isMatch(s, p.substring(2)))
         		return true;
         	s = s.substring(1);
