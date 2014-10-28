@@ -8,3 +8,8 @@ Given an array S of n integers, find three integers in S such that the sum is cl
 
 // Solution
 // Time complexity: O(), Space complexity: O()
+public class Solution {
+    public int threeSumClosest(int[] num, int target) {
+        if (num == null || num.length == 0) return 0;
+    }
+}
