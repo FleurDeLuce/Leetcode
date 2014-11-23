@@ -21,16 +21,24 @@ public class Solution extends Reader4 {
      * @return    The number of characters read
      */
     public int read(char[] buf, int n) {
-        char[] buffer = new char[4];
+        char[] fourBuffer = new char[4];
         int readBytes = 0;
         boolean eof = false;
         while (!eof && readBytes < n) {
-            int size = read4(buffer);
+            // each time, check if the remaining buffer size is less than 4
+            int size = read4(fourBuffer);
             if (size < 4) eof = true;
-            int bytes = Math.min(n - readBytes, size);
-            System.arraycopy(buffer, 0, buf, readBytes, bytes);
-            readBytes += bytes;
+            /* bytes newly read in this iteration
+             before last iteration, addBytes is always 4 (size)
+             in the last iteration, if byte is 1 - 4, then add size
+             else(size is 0), then add n - readBytes, which is the remaining bytes here,and less than the size
+             */
+            int addBytes = Math.min(n - readBytes, size);
+            // update buf, copy current reading 4-char content to it
+            System.arraycopy(fourBuffer, 0, buf, readBytes, addBytes);
+            readBytes += addBytes;
         }
         return readBytes;
     }
+    
 }
