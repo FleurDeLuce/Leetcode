@@ -40,7 +40,7 @@ public class Solution {
 
 
 // Time complexity: O(log(n)), Space complexity: O(1)
-// divide and conquer method
+// divide and conquer method, similar to binary search
 public class Solution {
     public int findPeakElement(int[] num) {
         if (num == null || num.length == 0)
@@ -50,10 +50,13 @@ public class Solution {
         int high = num.length - 1;
         while (low < high - 1) {
             int mid = low + (high - low) / 2;
-            if (num[mid - 1] < num[mid] && num[mid + 1] < num[mid]) {
+            // if mid is the peak
+            if (num[mid - 1] < num[mid] && num[mid + 1] < num[mid])
                 return mid;
-            }
             
+            // if mid is not the peak, then the peak must be in the left or right half
+            // if mid is smaller than the left neighbor, then the peak is in the left half, eithe peak or rising
+            // otherwise peak is in the right half
             if(num[mid] < num[mid - 1] && mid >= 1)
                 high = mid;
             else low = mid;
