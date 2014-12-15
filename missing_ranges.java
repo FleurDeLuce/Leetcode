@@ -36,8 +36,11 @@ public class Solution {
     public List<String> findMissingRanges(int[] A, int lower, int upper) {
         List<String> rangeList = new ArrayList<String>();
         int size = A.length;
+        // add 2 elements to the beginning and end to avoid pesky edge cases of the first and last element
+        // insert extra element before the first element in array
         int prev = lower - 1;
         for (int i = 0; i <= size; i++) {
+            // insert the extra element after the end of array
             int curr = (i == size) ? upper + 1 : A[i];
             if (curr - prev >= 2)
                 rangeList.add(getString(prev + 1, curr - 1));
