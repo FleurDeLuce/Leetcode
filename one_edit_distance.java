@@ -3,22 +3,22 @@
  */
 
 // Solution
-// Time complexity: O(), Space complexity: O()
+// Time complexity: O(n), Space complexity: O(1)
 public class Solution {
     public boolean isOneEditDistance(String s, String t) {
         int lenS = s.length();
         int lenT = t.length();
         
-        if (lenS < lenT)
+        if (lenS > lenT)
             return isOneEditDistance(t, s);
         
-        if (lenS - lenT > 1)
+        if (lenT - lenS > 1)
             return false;
         
         int i = 0;
-        int shift = lenS - lenT;
+        int shift = lenT - lenS;
         // same length strings, compare non-matching letter
-        while (i < lenS && s.charAt(i) == s) i++;
+        while (i < lenS && s.charAt(i) == t.charAt(i)) i++;
         // all string char matches,
         if (i == lenS) return shift > 0;
         
@@ -26,4 +26,5 @@ public class Solution {
         while (i < lenS && s.charAt(i) == t.charAt(i + shift)) i++;
         return i == lenS;
     }
+    
 }
