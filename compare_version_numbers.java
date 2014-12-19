@@ -13,6 +13,7 @@
 
 // Solution
 // Time complexity: O(n), Space complexity: O(1)
+// split numbers by dot, and compare each part before dot in pair
 public class Solution {
     public int compareVersion(String version1, String version2) {
         if (version1.equals(version2) || version1 == null || version2 == null) return 0;
