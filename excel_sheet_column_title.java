@@ -18,12 +18,14 @@ public class Solution {
     public String convertToTitle(int n) {
         String res = new String();
         while (n > 0) {
+            // A to Z is actually 'A' + 0 to 'A' + 25, which is a 26-base counting system
             res = (char)('A' + (n - 1) % 26) + res;
             n = (n - 1) / 26;
         }
         return res;
     }
 }
+
 
 /*
  public class Solution {
