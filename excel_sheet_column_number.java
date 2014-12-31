@@ -19,9 +19,10 @@
 public class Solution {
     public int titleToNumber(String s) {
         int res = 0;
-        int size = s.length;
+        int size = s.length();
         for (int i = 0; i < size; i++) {
-            res += (s.charAt(i) - 64) * 26
+            res = res * 26 + s.charAt(i) - 64;
+            
         }
         return res;
     }
