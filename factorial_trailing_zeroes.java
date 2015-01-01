@@ -26,6 +26,5 @@ public class Solution {
     }
 }
 
-n = 5
-n = 10
+
 
