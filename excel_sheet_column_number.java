@@ -15,7 +15,7 @@
  */
 
 // Solution
-// Time complexity: O(), Space complexity: O()
+// Time complexity: O(n), Space complexity: O(1)
 public class Solution {
     public int titleToNumber(String s) {
         int res = 0;
