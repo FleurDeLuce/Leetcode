@@ -9,15 +9,17 @@
 public class Solution {
     public int majorityElement(int[] num) {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        int size = num.length();
-        
+        int size = num.length;
+        int majorityElement = 0;
+        int count = 0;
         for (int i = 0; i < size; i++) {
             if (map.get(num[i]) == null) map.put(num[i], 1);
             else {
-                int count = map.get(num[i]);
+                count = map.get(num[i]);
                 map.put(num[i], count + 1);
             }
-            if (count > size / 2) return num[i];
+            if (count >= size / 2) return num[i];
         }
+        return majorityElement;
     }
 }
