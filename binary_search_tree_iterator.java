@@ -29,7 +29,7 @@
  */
 
 public class BSTIterator {
-    // Recursive BST in-order traversal 
+    // Recursive BST in-order traversal
     // Use a stack to store the path from root to leftmost child through the parents
     public Stack<TreeNode> stack = new Stack<TreeNode>();
     
