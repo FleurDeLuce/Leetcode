@@ -1,44 +1,43 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
+/*
+ Given an array of integers, find two numbers such that they add up to a specific target number.
+ 
+ The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+ 
+ You may assume that each input would have exactly one solution.
+ 
+ Input: numbers={2, 7, 11, 15}, target=9
+ Output: index1=1, index2=2
  */
+
+// Solution
+// Time complexity: O(n), Space complexity: O(n)
 public class Solution {
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        // exception
-        if (l1 == null) 
-            return l2;
-        if (l2 == null)
-            return l1;
-        
-        ListNode l;
-        if (l1.val <= l2.val) {
-            l = l1;
-            l1 = l1.next;
-        } else {
-            l = l2;
-            l2 = l2.next;
-        }
-        
-        ListNode iter = l;
-        while(l1 != null && l2 != null) {
-            if (l1.val <= l2.val) {
-                iter.next = l1;
-                l1 = l1.next;
-            } 
+    public int[] twoSum(int[] numbers, int target) {
+        int[] res = new int[2];
+        HashMap<Integer, Integer> table = new HashMap<Integer, Integer>();
+        for (int i = 0; i < numbers.length; i++) {
+            if (table.get(numbers[i]) == null) table.put(target - numbers[i], i);
             else {
-                iter.next = l2;
-                l2 = l2.next;
+                res[0] = table.get(numbers[i]) + 1;
+                res[1] = i + 1;
             }
-            iter = iter.next;
         }
-        iter.next = l1 == null?l2:l1;
-        return l;
+        return res;
+    }
+    
+}
+
+// More complete solution with exception handling
+public class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < numbers.length; i++) {
+            int x = numbers[i];
+            if (map.containsKey(target - x)) {
+                return new int[] {map.get(target - x) + 1, i + 1};
+            }
+            map.put(x, i);
+        }
+        throw new IllegalArgumentException("No two sum solution");
     }
 }
