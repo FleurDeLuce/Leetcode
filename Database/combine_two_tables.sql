@@ -29,5 +29,5 @@ FirstName, LastName, City, State
 # Solution: left join
 # Write your MySQL query statement below
 select P.FirstName, P.LastName, A.City, A.State
-from Person as P left join Address as A
+from Person P left join Address A
 on P.PersonId = A.PersonId;
