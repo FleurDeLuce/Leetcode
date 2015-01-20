@@ -28,6 +28,7 @@ where l1.Id + 1 = l2.Id and l1.Num = l2.Num
 and l2.Id + 1 = l3.Id and l2.Num = l3.Num
 
 # user-defined solution
+# reference: http://www.madcoder.cn/leetcode-consecutive-numbers.html
 SELECT DISTINCT Num FROM (
     SELECT Num, IF(Num = @last, @row := @row + 1, @row := 1) as times, @last := Num
     FROM Logs, (SELECT @last := 'x', @row := 0) r
