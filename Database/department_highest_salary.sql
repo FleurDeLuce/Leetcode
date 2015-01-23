@@ -26,7 +26,7 @@ Write a SQL query to find employees who have the highest salary in each of the d
 | Sales      | Henry    | 80000  |
 +------------+----------+--------+
  */
-
+ # (e.DepartmentId, e.Salary) is the primary key pair
 select d.Name as Department, e.Name as Employee, e.Salary as Salary
 from Employee e, Department d
 where (e.DepartmentId, e.Salary) in (
@@ -35,3 +35,17 @@ where (e.DepartmentId, e.Salary) in (
     group by e.DepartmentId
 )
 and e.DepartmentId = d.Id;
+
+/*
+#Wrong solution
+select d.Name as Department, e.Name as Employee, e.Salary as Salary
+from Employee e, Department d
+where (e.Id, e.Salary) in (
+    select e.Id, max(e.Salary)
+    from Employee e
+    group by e.DepartmentId
+)
+and e.DepartmentId = d.Id;
+
+*/
+
